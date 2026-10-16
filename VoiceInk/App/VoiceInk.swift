@@ -114,6 +114,9 @@ struct VoiceInkApp: App {
                 reviewer: autoLearnReviewer
             )
         }
+        Task { @MainActor in
+            GitDictionarySyncService.shared.start(modelContainer: resolvedContainer)
+        }
 
         // 1. Create modelsDirectory URL
         let appSupportDirectory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
